@@ -1,32 +1,24 @@
 //your JS code here. If required.
-const gridItems = document.querySelectorAll('.grid-item');
-        const blockIdInput = document.getElementById('block_id');
-        const colorInput = document.getElementById('colour_id');
-        const changeButton = document.getElementById('change_button');
-        const resetButton = document.getElementById('reset_button');
+// Function to change the background color of a specific block
+function changeColor() {
+    // Get block ID and color from inputs
+    const blockId = document.getElementById("block_id").value;
+    const color = document.getElementById("colour_id").value;
 
-        // Event listener for changing color
-        changeButton.addEventListener('click', () => {
-            const blockId = blockIdInput.value;
-            const color = colorInput.value;
+    // Reset all grid items to transparent
+    resetGrid();
 
-            // Reset all grid items to transparent background
-            gridItems.forEach(item => {
-                item.style.backgroundColor = 'transparent';
-            });
+    // Select the specified block and apply the new color if a valid ID is provided
+    const block = document.getElementById(blockId);
+    if (block && color) {
+        block.style.backgroundColor = color;
+    }
+}
 
-            // Change the background color of the specified grid item
-            const targetItem = document.getElementById(blockId);
-            if (targetItem) {
-                targetItem.style.backgroundColor = color;
-            } else {
-                alert('Invalid block ID. Please enter a number between 1 and 9.');
-            }
-        });
-
-        // Event listener for reset button
-        resetButton.addEventListener('click', () => {
-            gridItems.forEach(item => {
-                item.style.backgroundColor = 'transparent';
-            });
-        });
+// Function to reset all grid items' background color to transparent
+function resetGrid() {
+    const gridItems = document.querySelectorAll(".grid-item");
+    gridItems.forEach(item => {
+        item.style.backgroundColor = "transparent";
+    });
+}
